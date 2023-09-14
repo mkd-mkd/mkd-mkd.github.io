@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>CONSIDERING TEMPORAL CONNECTION BETWEEN TURNS FOR CONVERSATIONAL SPEECH SYNTHESIS</title>
+<meta name="generator" content="Jekyll v3.9.0">
+<meta property="og:title" content="CONSIDERING TEMPORAL CONNECTION BETWEEN TURNS FOR CONVERSATIONAL SPEECH SYNTHESIS">
+<meta property="og:locale" content="en_US">
+<link rel="canonical" href="https://mkd-mkd.github.io/icassp2024/">
+<meta property="og:url" content="https://mkd-mkd.github.io/icassp2024/">
+<meta name="twitter:card" content="summary">
+<!-- End Jekyll SEO tag -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1023.0" data-gr-ext-installed="">
+    <section class="page-header">
+    <!-- <h1 class="project-name"></h1>
+    <h2 class="project-tagline"></h2> -->
+      
+      
+    </section>
+
+    <section class="main-content">
+      <h1 id=""><center> CONSIDERING TEMPORAL CONNECTION BETWEEN TURNS FOR CONVERSATIONAL SPEECH SYNTHESIS </center></h1>
+      <!-- <h1 id=""><center> Evaluation </center></h1> -->
+      
+
+<center> Kangdi Mei, Zhaoci Liu, Huipeng Du, Hengyu Li, Yang Ai, Liping Chen, Zhenhua Ling</center>
+<br>
+<center> National Engineering Research Center of Speech and Language Information Processing,</center>
+<center> University of Science and Technology of China, Hefei, P.R.China</center>
+
+
+<h2 id="abstract">Abstract</h2>
+<p>Conversational speech synthesis aims to synthesize speech of an individual speaker based on history 
+conversation. However, most studies in conversational speech synthesis only focus on the synthesis
+performance of the current speaker’s turn and neglect the temporal relationship between turns of interlocutors. 
+Therefore, we consider the temporal connection between turns for conversational speech synthesis, 
+which is crucial for the naturalness and coherence of conversations. 
+Specifically, we focus on the situation where there is no overlap between turns and only one history turn is considered. 
+In our task, we propose an acoustic model that leverages multi-modal (including text and speech) 
+information from previous turn to predict
+the acoustic features of not only current turn but also the inter-turn
+gap. The model is designed based on MQTTS and incorporates the
+global acoustic representation and BERT-based local semantic representation of previous turn 
+when predicting the acoustic features of
+each frame. Experimental results demonstrate that with the introduction of global acoustic information 
+and local semantic information, our model achieves better performance in temporal connection 
+between turns and content synthesis of current turn.</p>
+
+<h2><p class="toc_title">Contents</p></h2>
+<div id="toc_container">
+<ul>
+  <li><a href="#1">Model Architecture</a></li>
+  <li><a href="#2">Evaluation on different models</a></li>
+</ul>
+</div>
+
+<a name="1"><h2>Model Architecture</h2></a>
+<div>
+  <br />
+  <p style="text-align: center">
+    <img src="./framework.png" width="1200" height="600"/>
+  </p>
+  <p>
+  <figcaption style="text-align:center;">
+    </font>
+    <font size=3>
+      Fig.1 Overview of our proposed model.
+    </font>
+  </figcaption><br><br>
+  </p>
+</div>
+
+
+
+<a name="2"><h2>Evaluation on different models</h2></a>
+<p>
+GT: reconstructed from groundtruth. <br>
+M1: baseline model. <br>
+M2: baseline model with global acoustic information.  <br>
+M3: baseline model with local semantic information.  <br>
+M4: baseline model with global acoustic information and local semantic information. <br>
+</p>
+
+<h3>Sample 1</h3>
+<p>A: yeah we'd my mom does all the cooking and i do all the cleaning afterwards.<br>B: well is there uh any thing that your mother would make every year at christmas that's so special that you always enjoyed.</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>GT</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="wavs/GT/1_fe_03_10601_2_16213_gap_778_795.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/M1/1_fe_03_10601_2_16213_gap_778_795.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/M2/1_fe_03_10601_2_16213_gap_778_795.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/M3/1_fe_03_10601_2_16213_gap_778_795.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="wavs/M4/1_fe_03_10601_2_16213_gap_778_795.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+<br>
+<h3>Sample 2</h3>
+<h4>history</h4>
+<p><audio src="samples/30/history/history_30_0.wav" controls="" preload=""></audio></p>
+<p>B: umm i think we should have a house cleaning today. what's your opinion?<br>A: oh, no. we just did it last week.<br>B: come on. what do you want to do? washing clothes or cleaning the house?<br>A: i'd rather wash the clothes.<br><b>B: ok. here is the laundry.</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>M0</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+      <th style="text-align: center"><strong>M5</strong></th>
+      <th style="text-align: center"><strong>M6</strong></th>
+      <th style="text-align: center"><strong>M7</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-reconstruct.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base-Tu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base-Tu-Tp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base-Wu-Wp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v4-base-Tu-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/6_0_d30.output-v5-all-predictor-saln.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+<br>
+<h3>Sample 3</h3>
+<h4>history</h4>
+<p><audio src="samples/30/history/history_30_1.wav" controls="" preload=""></audio></p>
+<p>B: come on. what do you want to do? washing clothes or cleaning the house?<br>A: i'd rather wash the clothes.<br>B: ok. here is the laundry.<br>A: oh, my god! so much!<br><b>B: don't worry. i'll help you with it later.</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>M0</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+      <th style="text-align: center"><strong>M5</strong></th>
+      <th style="text-align: center"><strong>M6</strong></th>
+      <th style="text-align: center"><strong>M7</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-reconstruct.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base-Tu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base-Tu-Tp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base-Wu-Wp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v4-base-Tu-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/30/current/8_0_d30.output-v5-all-predictor-saln.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+<br>
+<h3>Sample 4</h3>
+<h4>history</h4>
+<p><audio src="samples/111/history/history.wav" controls="" preload=""></audio></p>
+<p>A: hi, dear, i've got your voice at last.<br>B: hi, darling, i am thinking it is the time of your calling.<br>A: are you ok today?<br><b>B: quite good except thinking of you so much.</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>M0</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+      <th style="text-align: center"><strong>M5</strong></th>
+      <th style="text-align: center"><strong>M6</strong></th>
+      <th style="text-align: center"><strong>M7</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-reconstruct.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base-Tu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base-Tu-Tp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base-Wu-Wp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v4-base-Tu-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/111/current/3_0_d111.output-v5-all-predictor-saln.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+<br>
+<h3>Sample 5</h3>
+<h4>history</h4>
+<p><audio src="samples/164/history/history.wav" controls="" preload=""></audio></p>
+<p>B: what kind of drink do you want with those meals?<br>A: one coca cola and the other a sprite, please.<br>B: you can super-size your meals for only three dollars extra.<br>A: yes, i'd like that, then.<br><b>B: how about anything for dessert, like an apple pie or ice cream?</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>M0</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+      <th style="text-align: center"><strong>M5</strong></th>
+      <th style="text-align: center"><strong>M6</strong></th>
+      <th style="text-align: center"><strong>M7</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-reconstruct.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base-Tu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base-Tu-Tp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base-Wu-Wp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v4-base-Tu-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/164/current/6_0_d164.output-v5-all-predictor-saln.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+<br>
+<h3>Sample 6</h3>
+<h4>history</h4>
+<p><audio src="samples/188/history/history.wav" controls="" preload=""></audio></p>
+<p>B: may i help you?<br>A: this dress is beautiful. may i try it on?<br>B: i'm afraid you can't.<br>A: what is the material of this dress?<br><b>B: it's one hundred percent cotton.</b></p>
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><strong>M0</strong></th>
+      <th style="text-align: center"><strong>M1</strong></th>
+      <th style="text-align: center"><strong>M2</strong></th>
+      <th style="text-align: center"><strong>M3</strong></th>
+      <th style="text-align: center"><strong>M4</strong></th>
+      <th style="text-align: center"><strong>M5</strong></th>
+      <th style="text-align: center"><strong>M6</strong></th>
+      <th style="text-align: center"><strong>M7</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-reconstruct.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base-Tu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base-Tu-Tp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base-Wu-Wp.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v4-base-Tu-Wu.wav" controls="" preload=""></audio></td>
+      <td style="text-align: left"><audio src="samples/188/current/4_0_d188.output-v5-all-predictor-saln.wav" controls="" preload=""></audio></td>
+  </tbody>
+</table>
+<br>
+
+
+      <footer class="site-footer">
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
